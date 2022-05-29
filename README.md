@@ -5,7 +5,7 @@
 
 Далее требуется установить Git на Ваш сервер.
 
->sudo apt update && sudo apt install git
+    sudo apt update && sudo apt install git
 
 ## Настройка сервера
 Создадим нового пользователя, который будет управлять репозиториями Git.
@@ -16,22 +16,22 @@ User - имя пользователя;
 
 /home/user - домашний каталог пользователя, в котором будут храниться все репозитории.
 
->sudo useradd -r -m -U -d /home/User -s /bin/bash User
+    sudo useradd -r -m -U -d /home/User -s /bin/bash User
 
 Переключаемся на созданного пользователя.
 
->sudo su User
+    sudo su User
 
 Следующая команда перенесет пользователя в домашний каталог.
 
-> cd
+    cd
 
 Для реализации входа по ssh следует создать каталог ssh, 
 установить правильные разрешения и создать в этом каталоге файл, который будет хранить ключи авторизованных пользователей.
 
->mkdir -p ~/.ssh && chmod 0700 ~/.ssh
+    mkdir -p ~/.ssh && chmod 0700 ~/.ssh
 
->touch ~/.ssh/authorized_keys && chmod 0600 ~/.ssh/authorized_keys
+    touch ~/.ssh/authorized_keys && chmod 0600 ~/.ssh/authorized_keys
 
 В созданный файл следует размещать ssh-ключи авторизованных пользователей.
 
@@ -40,7 +40,7 @@ User - имя пользователя;
 Теперь нужно создать пустой репозиторий.
 
 Project - имя репозитория.
->git init --bare ~/Project.git
+    git init --bare ~/Project.git
 
 Если все сделано правильно Вы увидите следующий вывод:
 
@@ -49,18 +49,18 @@ Project - имя репозитория.
 ## Настройка локального компьютера
 Требуется установить Git на Ваш локальный компьютер.
 
->sudo apt update && sudo apt install git
+    sudo apt update && sudo apt install git
 
 Далее создаем ssh-ключ.
 
->ssh-keygen -t rsa -b 4096
+    ssh-keygen -t rsa -b 4096
 
 Сформированный ssh-ключ требуется доставить на сервер в ранее созданный файл "authorized_keys".
 
 Один из вариантов:
 
 Скопировать вывод команды и вставить в нужный файл.
->cat ~/.ssh/id_rsa.pub
+    cat ~/.ssh/id_rsa.pub
 
 **Важно!**
 
@@ -70,11 +70,11 @@ Project - имя репозитория.
 
 После чего выполняете команду:
 
->git init
+    git init
 
 Далее нужно подключиться к Git-серверу.
 
->git remote add origin User@*Git-сервер IP*:Project.git
+    git remote add origin User@*Git-сервер IP*:Project.git
 
 На данном моменте настройка локального компьютера закончена.
 
